@@ -49,15 +49,19 @@ function pairNumber2(stocksProfit, target) {
   console.log('stocksProfit:', stocksProfit);
   for (let i = 0, len = stocksProfit.length; i < len - 1; i++) {
     const currValue = stocksProfit[i];
-    const diff = target - currValue;
-    const key = getKey(currValue, diff);
-    if (!strMap[key]) {
-      for(let j=len-1; j>= i+1; j--) {
-        if(stocksProfit[j] === diff) {
-          strMap[key] = true;
-          break;
+    if (currValue <= target / 2) {
+      const diff = target - currValue;
+      const key = getKey(currValue, diff);
+      if (!strMap[key]) {
+        for (let j = len - 1; j >= i + 1; j--) {
+          if (stocksProfit[j] === diff) {
+            strMap[key] = true;
+            break;
+          }
         }
       }
+    } else {
+      break;
     }
   }
   return Object.keys(strMap).length;
