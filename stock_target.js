@@ -51,16 +51,11 @@ function pairNumber2(stocksProfit, target) {
     const currValue = stocksProfit[i];
     if (currValue <= target / 2) {
       const diff = target - currValue;
-      const key = getKey(currValue, diff);
+      // const key = getKey(currValue, diff);
+      const key = '' + currValue + diff;
       if (!strMap[key]) {
-        // for (let j = len - 1; j >= i + 1; j--) {
-        //   if (stocksProfit[j] === diff) {
-        //     strMap[key] = true;
-        //     break;
-        //   }
-        // }
-        const findedValue = stocksProfit.slice(i+1).find(item => item === diff);
-        if(findedValue !== undefined) {
+        const findedValue = stocksProfit.slice(i + 1).find(item => item === diff);
+        if (findedValue !== undefined) {
           strMap[key] = true;
         }
       }
