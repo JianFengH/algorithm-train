@@ -53,11 +53,15 @@ function pairNumber2(stocksProfit, target) {
       const diff = target - currValue;
       const key = getKey(currValue, diff);
       if (!strMap[key]) {
-        for (let j = len - 1; j >= i + 1; j--) {
-          if (stocksProfit[j] === diff) {
-            strMap[key] = true;
-            break;
-          }
+        // for (let j = len - 1; j >= i + 1; j--) {
+        //   if (stocksProfit[j] === diff) {
+        //     strMap[key] = true;
+        //     break;
+        //   }
+        // }
+        const findedValue = stocksProfit.slice(i+1).find(item => item === diff);
+        if(findedValue !== undefined) {
+          strMap[key] = true;
         }
       }
     } else {
