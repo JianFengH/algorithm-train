@@ -1,2 +1,2 @@
-# test
-this is test
+# Practice some algorithms
+

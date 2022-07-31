@@ -54,7 +54,7 @@ function pairNumber2(stocksProfit, target) {
       // const key = getKey(currValue, diff);
       const key = '' + currValue + diff;
       if (!strMap[key]) {
-        const findedValue = stocksProfit.slice(i + 1).find(item => item === diff);
+        const findedValue = stocksProfit.slice(i + 1).find(item => item === diff); // ... more optimization by binary search
         if (findedValue !== undefined) {
           strMap[key] = true;
         }
