@@ -9,5 +9,5 @@ describe('Sort algorithms', function () {
     it(`should return sorted array: ${actual}`, function () {
       assert.equal(bubble_sort(entry).join(), actual.join());
     });
-  })
+  });
 })
