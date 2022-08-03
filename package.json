@@ -1,0 +1,28 @@
+{
+  "type": "module",
+  "name": "algorithm-train",
+  "description": "",
+  "version": "0.0.1",
+  "main": "index.js",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "mocha": "^10.0.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JianFengH/algorithm-train.git"
+  },
+  "keywords": [
+    "algorithms"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JianFengH/algorithm-train/issues"
+  },
+  "homepage": "https://github.com/JianFengH/algorithm-train#readme"
+}
