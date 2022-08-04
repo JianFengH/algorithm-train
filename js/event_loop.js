@@ -14,4 +14,4 @@ new Promise((resolve, reject) => {
   console.log(4);
 });
 
-// 1 3 2 4 5
+// 1 3 4 2 5
