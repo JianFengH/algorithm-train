@@ -24,5 +24,6 @@ new Promise((resolve, reject) => {
 
 console.log(6);
 
+// Execution order: Promise callback -> then callback -> setTimeout callback
 // 1 3 4 6 8  
 // 2 5 7 9
