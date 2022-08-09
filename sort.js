@@ -3,7 +3,7 @@
  * pointer to first index of unsorted array for inner loop
  * @param {float} input 
  */
-export function bubble_sort(input) {
+export function selection_sort(input) {
   const re = [].concat(input);
   for (let i = re.length - 1; i > 0; i--) { // sorted 
     for (let j = 0; j < i; j++) { // unsorted
@@ -18,7 +18,7 @@ export function bubble_sort(input) {
 }
 
 // const test1 = [10, 2, 5, 7, 2];
-// console.log(bubble_sort(test1));
+// console.log(selection_sort(test1));
 
 /**
  * two sections: 1. sorted list 2. unsorted list

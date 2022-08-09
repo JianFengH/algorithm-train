@@ -1,13 +1,13 @@
 import assert from 'assert';
-import { bubble_sort, insertion_sort } from '../sort.js';
+import { selection_sort, insertion_sort } from '../sort.js';
 
 describe('Sort algorithms', function () {
   const entry = [10, 2, 5, 7, 2];
   const actual = [].concat(entry).sort((a, b) => a - b);
 
-  describe('#bubble_sort()', function () {
+  describe('#selection_sort()', function () {
     it(`should return sorted array: ${actual}`, function () {
-      assert.equal(bubble_sort(entry).join(), actual.join());
+      assert.equal(selection_sort(entry).join(), actual.join());
     });
   });
 
