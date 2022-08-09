@@ -41,3 +41,19 @@ export function insertion_sort(input) {
   return re;
 }
 
+export default function bubble_sort(input) {
+  const re = [].concat(input);
+  let swaped = true;
+  while (swaped) {
+    swaped = false;
+    for (let j = 0, len = re.length; j < len - 1; j++) {
+      if (re[j] > re[j + 1]) {
+        const t = re[j];
+        re[j] = re[j + 1];
+        re[j + 1] = t;
+        swaped = true;
+      }
+    }
+  }
+  return re;
+}
