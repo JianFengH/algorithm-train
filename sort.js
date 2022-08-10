@@ -61,7 +61,7 @@ export function insertion_sort2(input) {
   return re;
 }
 
-export default function bubble_sort(input) {
+export function bubble_sort(input) {
   const re = [].concat(input);
   let swaped = true;
   while (swaped) {
@@ -89,3 +89,29 @@ export default function bubble_sort(input) {
  * The counting sort algorithm works by first creating a list of the counts or occurrences of each unique value in the list. 
  * It then creates a final sorted list based on the list of counts.
  */
+
+/**
+ * divide and conquer:
+ *  Divide the array into two halves.
+ *  Sort the left half and the right half using the same recurring algorithm.
+ *  Merge the sorted halves.
+ */
+export function merge_sort(input) {
+  return _merge_sort(input);
+}
+
+function _merge_sort(arr) {
+  if (arr.length < 2) return arr;
+  let mid = Math.floor(arr.length / 2);
+  let subLeft = _merge_sort(arr.slice(0, mid));
+  let subRight = _merge_sort(arr.slice(mid));
+  return _merge(subLeft, subRight);
+}
+
+function _merge(a, b) {
+  let result = [];
+  while (a.length > 0 && b.length > 0) {
+    result.push(a[0] < b[0] ? a.shift() : b.shift());
+  }
+  return result.concat(a.length ? a : b);
+}

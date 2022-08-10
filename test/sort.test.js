@@ -1,5 +1,5 @@
 import assert from 'assert';
-import bubble_sort, { selection_sort, insertion_sort, insertion_sort2 } from '../sort.js';
+import { bubble_sort, selection_sort, insertion_sort, insertion_sort2, merge_sort } from '../sort.js';
 
 describe('Sort algorithms', function () {
   const entry = [10, 2, 5, 7, 2];
@@ -26,6 +26,12 @@ describe('Sort algorithms', function () {
   describe('#bubble_sort()', function () {
     it(`should return sorted array: ${actual}`, function () {
       assert.equal(bubble_sort(entry).join(), actual.join());
+    });
+  });
+
+  describe('#merge_sort()', function () {
+    it(`should return sorted array: ${actual}`, function () {
+      assert.equal(merge_sort(entry).join(), actual.join());
     });
   });
 })
