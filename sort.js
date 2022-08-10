@@ -28,6 +28,9 @@ export function insertion_sort(input) {
   const re = [].concat(input);
   for (let i = 1, len = re.length; i < len; i++) { // unsorted
     const t = re[i];
+    if (t >= re[i - 1]) {
+      continue;
+    }
     for (let j = 0; j < i; j++) { // sorted
       if (t <= re[j]) { // it is the postion to insert
         for (let m = i; m > j; m--) {
