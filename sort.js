@@ -6,12 +6,16 @@
 export function selection_sort(input) {
   const re = [].concat(input);
   for (let i = re.length - 1; i > 0; i--) { // sorted 
+    let max_index = i;
     for (let j = 0; j < i; j++) { // unsorted
-      if (re[j] > re[i]) {
-        const t = re[i];
-        re[i] = re[j];
-        re[j] = t;
+      if (re[j] > re[max_index]) {
+        max_index = j;
       }
+    }
+    if (max_index !== i) {
+      const t = re[i];
+      re[i] = re[max_index];
+      re[max_index] = t;
     }
   }
   return re;
@@ -115,3 +119,8 @@ function _merge(a, b) {
   }
   return result.concat(a.length ? a : b);
 }
+
+/**
+ * radix sort:
+ * For each digit i where i varies from the least significant digit to the most significant digit of a number, sort input array using countsort algorithm according to ith digit.
+ */
