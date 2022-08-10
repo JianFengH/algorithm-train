@@ -44,6 +44,23 @@ export function insertion_sort(input) {
   return re;
 }
 
+export function insertion_sort2(input) {
+  const re = [].concat(input);
+  const len = re.length;
+  let i = 1;
+  while (i < len) {
+    let key = re[i];
+    let j = i - 1;
+    while (j >= 0 && re[j] > key) {
+      re[j + 1] = re[j];
+      j = j - 1;
+    }
+    re[j + 1] = key;
+    i++;
+  }
+  return re;
+}
+
 export default function bubble_sort(input) {
   const re = [].concat(input);
   let swaped = true;
@@ -60,3 +77,15 @@ export default function bubble_sort(input) {
   }
   return re;
 }
+
+/**
+ * bucket sort:
+ * Bucket sort is a comparison sort algorithm that operates on elements by dividing them into different buckets and then sorting these buckets individually. 
+ * Each bucket is sorted individually using a separate sorting algorithm like insertion sort, or by applying the bucket sort algorithm recursively.
+ */
+
+/**
+ * counting sort:
+ * The counting sort algorithm works by first creating a list of the counts or occurrences of each unique value in the list. 
+ * It then creates a final sorted list based on the list of counts.
+ */
