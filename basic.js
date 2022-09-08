@@ -163,7 +163,7 @@ let countSubstrings2 = function (s) {
 
 const longestPalindrome = (s) => {
   if (s.length < 2) return s;
-  // res: 最长回文子串
+  // res:  store longest palindrome
   let res = s[0], dp = [];
   for (let i = 0; i < s.length; i++) {
     dp[i][i] = true;
@@ -175,7 +175,7 @@ const longestPalindrome = (s) => {
       } else if (s[i] === s[j] && dp[i + 1][j - 1]) {
         dp[i][j] = true;
       }
-      // 获取当前最长回文子串
+      // get current longest palindrome
       if (dp[i][j] && j - i + 1 > res.length) {
         res = s.substring(i, j + 1);
       }
