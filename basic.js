@@ -303,3 +303,16 @@ function countDecreasingRatings2(ratings) {
   }
   return res;
 }
+
+function traverseTree(root) {
+  const depth = root.depth;
+  const levelNodes = [[root]];
+  for (let i = 1; i < depth; i++) {
+    const upLevelNodes = levelNodes[i - 1];
+    const currLevelNodes = [];
+    for (let j = 0; j < upLevelNodes.length; j++) {
+      currLevelNodes.push(...upLevelNodes.children);
+    }
+    levelNodes.push(currLevelNodes);
+  }
+}
