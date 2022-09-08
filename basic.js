@@ -231,3 +231,75 @@ const generateParenthesis = (n) => {
   dfs('', 0, 0);
   return res;
 }
+
+function findPasswordStrength(pd) {
+  const len = pd.length;
+  let count = 0;
+  for (let i = 1; i <= len; i++) {
+    for (let j = 0; j < len; j++) {
+      if (j + i > len) break;
+      const substr = pd.substring(j, j + i);
+      count += getUniqueStrNumber(substr);
+    }
+  }
+  return count;
+}
+
+function getUniqueStrNumber(str) {
+  const set = new Set();
+  for (let i = 0; i < str.length; i++) {
+    set.add(str.substring(i, i + 1));
+  }
+  return set.size;
+}
+
+function countDecreasingRatings(ratings) {
+  const len = ratings.length;
+  let count = 0;
+  for (let i = 1; i <= len; i++) {
+    for (let j = 0; j < len; j++) {
+      if (j + i > len) break;
+      const sub = ratings.slice(j, j + i);
+      if (isDecreasingConsectively(sub)) {
+        count++;
+      }
+    }
+  }
+  return count;
+}
+
+function isDecreasingConsectively(sub) {
+  for (let i = 0; i < sub.length - 1; i++) {
+    if (sub[i + 1] !== sub[i] - 1) return false;
+  }
+  return true;
+}
+
+// dp[i] = dp[i+1] + (if str[i] < str[i]i+1)
+/**
+ * str[i] + 1 !== str[i-1], dp[i] = dp[i+1] + 1;
+ * str[i] + 1 === str[i-1], dp[i] = dp[i+1] + (X: back to find the time when str[j-1] !== str[j]);
+ * 
+ * dp[0] = 1
+ */
+function countDecreasingRatings2(ratings) {
+  const len = ratings.length;
+  let res = 1;
+  for (let i = 1; i < len; i++) {
+    if (ratings[i] + 1 !== ratings[i - 1]) {
+      res++;
+    } else {
+      let j = i - 1;
+      while (j >= 0) {
+        if (ratings[j + 1] + 1 === ratings[j]) {
+          res++;
+          j--;
+        } else {
+          break;
+        }
+      }
+      res++;
+    }
+  }
+  return res;
+}
