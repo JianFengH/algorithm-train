@@ -316,3 +316,20 @@ function traverseTree(root) {
     levelNodes.push(currLevelNodes);
   }
 }
+
+/**
+ * dp[i] =  Math.max(dp[i-1], prices[i] - minprice)
+ * 
+ * dp[0] = 0
+ */
+function maxProfit2(prices) {
+  let res = 0;
+  let minprice = prices[0];
+  for (let i = 1; i < prices.length; i++) {
+    res = Math.max(res, prices[i] - minprice);
+    if (prices[i] < minprice) {
+      minprice = prices[i];
+    }
+  }
+  return res;
+}
