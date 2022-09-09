@@ -253,6 +253,27 @@ function getUniqueStrNumber(str) {
   return set.size;
 }
 
+/**
+ * dp[i] = dp[i-1] + (count: i combined with previous strings)
+ * 
+ * dp[0] = 1;
+ */
+function findPasswordStrength2(pd) {
+  if (typeof pd !== 'string') return 0;
+
+  let res = 1;
+  for (let i = 1; i < pd.length; i++) {
+    let count = 0;
+    const set = new Set();
+    for (let j = i; j >= 0; j--) {
+      set.add(pd.substring(j, j + 1));
+      count += set.size;
+    }
+    res += count;
+  }
+  return res;
+}
+
 function countDecreasingRatings(ratings) {
   const len = ratings.length;
   let count = 0;
@@ -275,7 +296,6 @@ function isDecreasingConsectively(sub) {
   return true;
 }
 
-// dp[i] = dp[i+1] + (if str[i] < str[i]i+1)
 /**
  * str[i] + 1 !== str[i-1], dp[i] = dp[i+1] + 1;
  * str[i] + 1 === str[i-1], dp[i] = dp[i+1] + (X: back to find the time when str[j-1] !== str[j]);
