@@ -25,11 +25,10 @@ function countGroups(related) {
   const singleSet = new Set();
   singleSet.add(0);
   for (let j = 1; j < related.length; j++) {
-    let foundOne = false;
+    singleSet.add(j);
     for (let i = 0; i < j; i++) {
       const flag = related[i].substring(j, j + 1);
-      if (flag === '1') { // if i is in an existing set, push j into it
-        foundOne = true;
+      if (flag === '1') {
         let iIndex = -1, jIndex = -1;
         for (let m = 0; m < res.length; m++) {
           const cset = res[m];
@@ -62,9 +61,6 @@ function countGroups(related) {
         singleSet.delete(i);
         singleSet.delete(j);
       }
-    }
-    if (!foundOne) {
-      singleSet.add(j);
     }
   }
   console.log('res', res);
