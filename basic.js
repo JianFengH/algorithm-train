@@ -93,7 +93,13 @@ let minCostClimbingStairs = function (cost) {
   return Math.min(n1, n2);
 };
 
-// dp[n] = Math.max(dp[n−1]+nums[n], nums[n])
+/**
+ * dp[n] = Math.max(dp[n−1]+nums[n], nums[n])
+ * max = Math.max(max, dp[n])
+ * 
+ * dp[0] = nums[0]
+ * max = nums[0]
+ * */
 let maxSubArray = function (nums) {
   let max = nums[0], pre = 0;
   for (const num of nums) {
@@ -102,6 +108,15 @@ let maxSubArray = function (nums) {
     } else {
       pre = num;
     }
+    max = Math.max(max, pre);
+  }
+  return max;
+}
+
+function maxSubArray2(nums) {
+  let pre = nums[0], max = nums[0];
+  for (let i = 1; i < nums.length; i++) {
+    pre = Math.max(pre + nums[i], nums[i]);
     max = Math.max(max, pre);
   }
   return max;
