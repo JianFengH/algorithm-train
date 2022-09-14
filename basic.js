@@ -281,7 +281,7 @@ function countDecreasingRatings(ratings) {
     for (let j = 0; j < len; j++) {
       if (j + i > len) break;
       const sub = ratings.slice(j, j + i);
-      if (isDecreasingConsectively(sub)) {
+      if (isDecreasingConsecutively(sub)) {
         count++;
       }
     }
@@ -289,7 +289,7 @@ function countDecreasingRatings(ratings) {
   return count;
 }
 
-function isDecreasingConsectively(sub) {
+function isDecreasingConsecutively(sub) {
   for (let i = 0; i < sub.length - 1; i++) {
     if (sub[i + 1] !== sub[i] - 1) return false;
   }
@@ -297,8 +297,8 @@ function isDecreasingConsectively(sub) {
 }
 
 /**
- * str[i] + 1 !== str[i-1], dp[i] = dp[i+1] + 1;
- * str[i] + 1 === str[i-1], dp[i] = dp[i+1] + (X: back to find the time when str[j-1] !== str[j]);
+ * str[i] + 1 !== str[i-1], dp[i] = dp[i-1] + 1;
+ * str[i] + 1 === str[i-1], dp[i] = dp[i-1] + (X: back to find the time until str[j-1] !== str[j] + 1);
  * 
  * dp[0] = 1
  */
@@ -309,6 +309,7 @@ function countDecreasingRatings2(ratings) {
     if (ratings[i] + 1 !== ratings[i - 1]) {
       res++;
     } else {
+      res++;
       let j = i - 1;
       while (j >= 0) {
         if (ratings[j + 1] + 1 === ratings[j]) {
@@ -318,7 +319,21 @@ function countDecreasingRatings2(ratings) {
           break;
         }
       }
-      res++;
+    }
+  }
+  return res;
+}
+
+function countDecreasingRatings3(ratings) {
+  let res = 1;
+  let pre = 0;
+  for (let i = 1; i < ratings.length; i++) {
+    res++;
+    if (ratings[i] + 1 === ratings[i - 1]) {
+      pre++;
+      res += pre;
+    } else {
+      pre = 0;
     }
   }
   return res;
