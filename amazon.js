@@ -71,6 +71,11 @@ function countGroups(related) {
 
 // console.log(countGroups(['10001', '11100', '01100', '00011', '000001']));
 
+/**
+ * 
+ * @param {*} power 
+ * @returns 
+ */
 function findTotalPower(power) {
   const powerLength = power.length;
   const sum = [];
@@ -95,5 +100,5 @@ function findTotalPower(power) {
       result += min * total;
     }
   }
-  return result;
+  return result % (Math.pow(10, 9) + 7);
 }
