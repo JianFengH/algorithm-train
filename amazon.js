@@ -69,4 +69,31 @@ function countGroups(related) {
   return res.length + singleSet.size;
 }
 
-console.log(countGroups(['10001', '11100', '01100', '00011', '000001']));
+// console.log(countGroups(['10001', '11100', '01100', '00011', '000001']));
+
+function findTotalPower(power) {
+  const powerLength = power.length;
+  const sum = [];
+  sum[0] = power[0];
+  for (let i = 1; i < powerLength; i++) {
+    sum[i] = sum[i - 1] + power[i];
+  }
+  const dp = new Array(powerLength).fill(0);
+  for (let i = 0; i < powerLength; i++) {
+    dp[i] = new Array(powerLength).fill(0);
+    dp[i][i] = power[i];
+  }
+
+  let result = 0;
+  for (let j = 0; j < powerLength; j++) {
+    for (let i = j; i >= 0; i--) {
+      if (i !== j) {
+        dp[i][j] = Math.min(dp[i][j-1], dp[i+1][j]);
+      }
+      const min = dp[i][j];
+      const total = sum[j] - sum[i] + power[i]; 
+      result += min * total;
+    }
+  }
+  return result;
+}
