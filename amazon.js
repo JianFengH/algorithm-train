@@ -77,20 +77,20 @@ function countGroups(related) {
  * @returns 
  */
 function findTotalPower(power) {
-  const powerLength = power.length;
+  const size = power.length;
   const sum = [];
   sum[0] = power[0];
-  for (let i = 1; i < powerLength; i++) {
+  for (let i = 1; i < size; i++) {
     sum[i] = sum[i - 1] + power[i];
   }
-  const dp = new Array(powerLength).fill(0);
-  for (let i = 0; i < powerLength; i++) {
-    dp[i] = new Array(powerLength).fill(0);
+  const dp = new Array(size);
+  for (let i = 0; i < size; i++) {
+    dp[i] = new Array(size).fill(0);
     dp[i][i] = power[i];
   }
 
   let result = 0;
-  for (let j = 0; j < powerLength; j++) {
+  for (let j = 0; j < size; j++) {
     for (let i = j; i >= 0; i--) {
       if (i !== j) {
         dp[i][j] = Math.min(dp[i][j-1], dp[i+1][j]);
