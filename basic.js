@@ -165,7 +165,7 @@ let countSubstrings2 = function (s) {
   }
   for (let j = 0; j < len; j++) {
     for (let i = 0; i <= j; i++) {
-      if (s[i] == s[j] && (j - i <= 1 || dp[i + 1][j - 1])) {
+      if (s[i] === s[j] && (j - i <= 1 || dp[i + 1][j - 1])) { // 1. s[i] === s[j] && (j-i) <= 1   2. s[i] === s[j] && dp[i+1][j-1]
         dp[i][j] = true;
         count++;
       } else {
