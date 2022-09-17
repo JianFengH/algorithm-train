@@ -156,20 +156,16 @@ let isPalindrome = function (s) {
 }
 
 let countSubstrings2 = function (s) {
-  const len = s.length;
   let count = 0;
-  const dp = new Array(len);
-
-  for (let i = 0; i < len; i++) {
-    dp[i] = new Array(len).fill(false);
+  const dp = new Array(s.length);
+  for (let i = 0; i < s.length; i++) {
+    dp[i] = new Array(s.length).fill(false);
   }
-  for (let j = 0; j < len; j++) {
+  for (let j = 0; j < s.length; j++) {
     for (let i = 0; i <= j; i++) {
-      if (s[i] === s[j] && (j - i <= 1 || dp[i + 1][j - 1])) { // 1. s[i] === s[j] && (j-i) <= 1   2. s[i] === s[j] && dp[i+1][j-1]
+      if (s[i] === s[j] && (j - i <= 1 || dp[i + 1][j - 1])) {
         dp[i][j] = true;
         count++;
-      } else {
-        dp[i][j] = false;
       }
     }
   }
@@ -177,27 +173,24 @@ let countSubstrings2 = function (s) {
 }
 
 const longestPalindrome = (s) => {
-  if (s.length < 2) return s;
-  // res:  store longest palindrome
-  let res = s[0], dp = [];
+  let longestStr = '';
+  let dp = new Array(s.length);
   for (let i = 0; i < s.length; i++) {
-    dp[i][i] = true;
+    dp[i] = new Array(s.length).fill(false);
   }
-  for (let j = 1; j < s.length; j++) {
-    for (let i = 0; i < j; i++) {
-      if (j - i === 1 && s[i] === s[j]) {
+  for (let j = 0; j < s.length; j++) {
+    for (let i = 0; i <= j; i++) {
+      if (j - i <= 1 && s[i] === s[j]) {
         dp[i][j] = true;
       } else if (s[i] === s[j] && dp[i + 1][j - 1]) {
         dp[i][j] = true;
       }
-      // get current longest palindrome
-      if (dp[i][j] && j - i + 1 > res.length) {
-        res = s.substring(i, j + 1);
+      if (dp[i][j] && j - i + 1 > longestStr.length) { // new longestStr
+        longestStr = s.substring(i, j + 1);
       }
     }
   }
-
-  return res;
+  return longestStr;
 }
 
 var minPathSum = function (grid) {
