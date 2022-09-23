@@ -93,12 +93,32 @@ function findTotalPower(power) {
   for (let j = 0; j < size; j++) {
     for (let i = j; i >= 0; i--) {
       if (i !== j) {
-        dp[i][j] = Math.min(dp[i][j-1], dp[i+1][j]);
+        dp[i][j] = Math.min(dp[i][j - 1], dp[i + 1][j]);
       }
       const min = dp[i][j];
-      const total = sum[j] - sum[i] + power[i]; 
+      const total = sum[j] - sum[i] + power[i];
       result += min * total;
     }
   }
   return result % (Math.pow(10, 9) + 7);
 }
+
+var countBinarySubstrings = function (s) {
+  var prev = 0;
+  var cur = 1;
+  var res = 0;
+
+  for (var i = 1; i < s.length; i++) {
+    if (s[i] === s[i - 1]) {
+      cur++;
+    } else {
+      prev = cur;
+      cur = 1;
+    }
+
+    if (prev >= cur) {
+      res++;
+    }
+  }
+  return res;
+};
