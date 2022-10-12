@@ -376,3 +376,14 @@ function maxProfit2(prices) {
   }
   return res;
 }
+
+// O(2^N)
+function makeSpecialStrings(str, idx, len) {
+  if (idx === len) {
+    console.log(str);
+  } else {
+    func(str + "a", idx + 1, len);
+    func(str + "b", idx + 1, len);
+  }
+}
+// console.log(func('', 0, 3));

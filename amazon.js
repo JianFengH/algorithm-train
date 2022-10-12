@@ -122,3 +122,6 @@ var countBinarySubstrings = function (s) {
   }
   return res;
 };
+
+function sumSubarrayMins(arr) { 
+}
