@@ -35,7 +35,7 @@ function nextElementByDFS(node) {
 }
 
 // by BFS
-function getElementById3(nodes, id) {
+function getElementByIdWithBFS(nodes, id) {
   if (nodes.length === 0) return null;
   const nextLevelNodes = [];
   for (let i = 0; i < nodes.length; i++) {
@@ -50,6 +50,15 @@ function getElementById3(nodes, id) {
   return getElementById3(nextLevelNodes, id);
 }
 
+function getElementByIdWithBFS2(root, id){
+  const queue = new Array();
+  queue.push(root);
+  while(queue.length) {
+    const node = queue.shift();
+    if(node.id === id) return node;
+    for(const child of node.childNodes) queue.push(child);
+  }
+}
 
 function binarySearch(items, target) {
   items.sort((a, b) => a - b);
